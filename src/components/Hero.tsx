@@ -56,7 +56,7 @@ const Hero = () => {
               id="search"
               value={wagpayID}
               onChange={(e) => setWagpayID(e.target.value)}
-              placeholder="username@wagpay"
+              placeholder="username"
               className="block w-full pl-4 border-none outline-none pr-12 sm:text-sm h-14 bg-[#4F4F4F66] opacity-75 rounded-md"
             />
             <div className="absolute inset-y-0 right-0 flex py-2 pr-1.5">
