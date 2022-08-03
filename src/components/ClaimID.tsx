@@ -1,6 +1,8 @@
 import { useAccount } from "wagmi";
 
-type Props = {};
+type Props = {
+  userID: any;
+};
 
 const ClaimID = (props: Props) => {
   const { address } = useAccount();
@@ -9,7 +11,7 @@ const ClaimID = (props: Props) => {
       <div className="flex flex-col items-center mt-24 lg:w-2/4 space-y-6 bg-[#4F4F4F33] bg-opacity-30 rounded-lg px-20 py-8">
         <div className="text-6xl font-bold">CLAIM YOUR ID</div>
         <div className="text-3xl font-semibold text-wid-purple">
-          satyam@wagpay
+          {props.userID ? props.userID : <span>satyam@wagpay</span>}
         </div>
         <span>
           Check to see if you’re eligible to claim your handle to use <br />{" "}

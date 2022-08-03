@@ -4,16 +4,21 @@ import WIDButton from "./WidButton";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const Hero = () => {
+type Props = {
+  userID: any;
+  setUserID: any;
+};
+
+const Hero = (props: Props) => {
   let navigate = useNavigate();
-  const [wagpayID, setWagpayID] = useState("");
+  // const [wagpayID, setWagpayID] = useState("");
 
   const validID = new RegExp("^[a-zA-Z0-9]+@wagpay$");
   // const specialChar = new RegExp("^/[`~!#$%^&*()_|+-=?;:'\",.<>{}[]\\/]/gi");
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    if (!validID.test(wagpayID)) {
+    if (!validID.test(props.userID)) {
       toast.error("Invalid ID", {
         id: "Invalid ID",
         duration: 3000,
@@ -54,8 +59,8 @@ const Hero = () => {
               type="text"
               name="search"
               id="search"
-              value={wagpayID}
-              onChange={(e) => setWagpayID(e.target.value)}
+              value={props.userID}
+              onChange={(e) => props.setUserID(e.target.value)}
               placeholder="username"
               className="block w-full pl-4 border-none outline-none pr-12 sm:text-sm h-14 bg-[#4F4F4F66] opacity-75 rounded-md"
             />
