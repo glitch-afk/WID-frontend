@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Navbar = () => {
   return (
@@ -6,9 +7,10 @@ const Navbar = () => {
       <Link to="/" className="text-2xl font-extrabold ">
         WAGPAY
       </Link>
-      <button className="inline-flex items-center justify-center px-6 py-2 font-medium text-white bg-gradient-to-r from-wid-indigo to-wid-purple rounded-full">
+      <ConnectButton showBalance={false} />
+      {/* <button className="inline-flex items-center justify-center px-6 py-2 font-medium text-white bg-gradient-to-r from-wid-indigo to-wid-purple rounded-full">
         Claim ID
-      </button>
+      </button> */}
     </div>
   );
 };

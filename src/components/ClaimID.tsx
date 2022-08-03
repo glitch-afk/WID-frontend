@@ -1,8 +1,9 @@
-import React from "react";
+import { useAccount } from "wagmi";
 
 type Props = {};
 
 const ClaimID = (props: Props) => {
+  const { address } = useAccount();
   return (
     <div className="flex items-center justify-center w-full h-fit">
       <div className="flex flex-col items-center mt-24 lg:w-2/4 space-y-6 bg-[#4F4F4F33] bg-opacity-30 rounded-lg px-20 py-8">
@@ -31,7 +32,7 @@ const ClaimID = (props: Props) => {
               d="M2 3.5A1.5 1.5 0 0 1 3.5 2H11a2 2 0 0 1 2 2v.268A2 2 0 0 1 14 6v6a2 2 0 0 1-2 2H4.5A2.5 2.5 0 0 1 2 11.5v-8Zm1 0a.5.5 0 0 0 .5.5H12a1 1 0 0 0-1-1H3.5a.5.5 0 0 0-.5.5ZM10.5 8a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z"
             ></path>
           </svg>
-          Connect Wallet
+          {address ? address : "Connect Wallet"}
         </button>
         <button className="inline-flex items-center justify-center px-6 py-2 font-medium text-white border border-wid-indigo w-full rounded-full">
           <svg
