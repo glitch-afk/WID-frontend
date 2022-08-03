@@ -8,7 +8,7 @@ const ClaimID = (props: Props) => {
   const { address } = useAccount();
   return (
     <div className="flex items-center justify-center w-full h-fit">
-      <div className="flex flex-col items-center mt-12 lg:mt-24 lg:w-2/4 space-y-6 bg-[#4F4F4F33] bg-opacity-30 rounded-lg px-20 py-8">
+      <div className="flex flex-col items-center mt-12 lg:mt-24 lg:w-2/4 space-y-6 bg-[#4F4F4F33] bg-opacity-30 rounded-lg px-4 lg:px-20 py-8">
         <div className="text-6xl font-bold">CLAIM YOUR ID</div>
         <div className="text-3xl font-semibold text-wid-purple">
           {props.userID ? props.userID : <span>satyam@wagpay</span>}
