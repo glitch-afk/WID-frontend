@@ -67,7 +67,7 @@ const Hero = () => {
       </div>
       {/* iphone */}
       <div className="w-full flex items-center justify-center mt-16">
-        <img src="/src/assets/iphone.svg" alt="iphone_image" />
+        <img src="/iphone.svg" alt="iphone_image" />
       </div>
     </>
   );
