@@ -1,4 +1,3 @@
-import { useState } from "react";
 import WIDButton from "./WidButton";
 
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ type Props = {
 
 const Hero = (props: Props) => {
   let navigate = useNavigate();
-  // const [wagpayID, setWagpayID] = useState("");
 
   const validID = new RegExp("^[a-zA-Z0-9]+@wagpay$");
   // const specialChar = new RegExp("^/[`~!#$%^&*()_|+-=?;:'\",.<>{}[]\\/]/gi");
@@ -43,11 +41,11 @@ const Hero = (props: Props) => {
   return (
     <>
       <div className="w-full mt-12 sm:mt-32 space-y-6">
-        <div className="text-5xl font-bold inline-block leading-tight">
+        <div className="text-4xl lg:text-5xl font-bold inline-block leading-tight">
           Powering your finances with the Next{" "}
           <span className="lg:block">Chapter of Internet</span>
         </div>
-        <div className="text-gray-400 text-lg inline-block px-2 ms:px-0">
+        <div className="text-gray-400 lg:text-lg inline-block px-2 ms:px-0">
           A payment solution that simplifies payment acceptance for the{" "}
           <span className="md:block">next chapter of the internet.</span>
         </div>
