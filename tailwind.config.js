@@ -24,6 +24,11 @@ module.exports = {
       maxWidth: {
         '8xl': '88rem',
       },
+      colors: {
+        'wid-dark': '#000000',
+        'wid-indigo': '#4B74FF',
+        'wid-purple': '#9281FF',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

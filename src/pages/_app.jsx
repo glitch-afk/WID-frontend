@@ -1,13 +1,16 @@
-import { Layout } from '@/components/Layout'
-
 import '@/styles/tailwind.css'
+import ConnectWallet from '@/components/ConnectWallet'
+
+import { IDWrapper } from '@/context/IDContext'
 
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ConnectWallet>
+        <IDWrapper>
+          <Component {...pageProps} />
+        </IDWrapper>
+      </ConnectWallet>
     </>
   )
 }
