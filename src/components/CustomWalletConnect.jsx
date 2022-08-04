@@ -39,7 +39,7 @@ const CustomWalletConnect = (props) => {
                       role="img"
                       width="28"
                       height="28"
-                      className="-ml-1 mr-2"
+                      className="-ml-1 mr-2 hidden sm:block"
                       preserveAspectRatio="xMidYMid meet"
                       viewBox="0 0 16 16"
                     >
