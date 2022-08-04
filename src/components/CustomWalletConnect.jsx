@@ -27,7 +27,11 @@ const CustomWalletConnect = (props) => {
             {(() => {
               if (!mounted || !account || !chain) {
                 return (
-                  <div className="flex w-full items-center justify-center space-x-2 rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 text-center text-sm font-medium text-white">
+                  <button
+                    onClick={openConnectModal}
+                    type="button"
+                    className="flex w-full items-center justify-center space-x-2 rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 text-center text-sm font-medium text-white"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -44,10 +48,8 @@ const CustomWalletConnect = (props) => {
                         d="M2 3.5A1.5 1.5 0 0 1 3.5 2H11a2 2 0 0 1 2 2v.268A2 2 0 0 1 14 6v6a2 2 0 0 1-2 2H4.5A2.5 2.5 0 0 1 2 11.5v-8Zm1 0a.5.5 0 0 0 .5.5H12a1 1 0 0 0-1-1H3.5a.5.5 0 0 0-.5.5ZM10.5 8a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z"
                       ></path>
                     </svg>
-                    <button onClick={openConnectModal} type="button">
-                      Connect Wallet
-                    </button>
-                  </div>
+                    <span>Connect Wallet</span>
+                  </button>
                 )
               }
 
