@@ -3,8 +3,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { ThemeSelector } from '@/components/ThemeSelector'
-// import CustomConnectButton from './CustomConnectButton'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import CustomWalletConnect from './CustomWalletConnect'
 
 import React from 'react'
 
@@ -47,7 +46,7 @@ const Header = () => {
 
         <div className="relative flex flex-grow basis-0 items-center justify-end space-x-6 sm:space-x-8">
           <ThemeSelector className="relative z-10" />
-          <ConnectButton />
+          <CustomWalletConnect />
         </div>
       </div>
     </header>

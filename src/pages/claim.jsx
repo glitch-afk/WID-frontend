@@ -1,6 +1,7 @@
 import { useAccount } from 'wagmi'
 import { useIDContext } from '@/context/IDContext'
 import Layout from '@/components/Layout'
+import CustomWalletConnect from '@/components/CustomWalletConnect'
 
 const ClaimID = () => {
   const { wagpayID } = useIDContext()
@@ -11,31 +12,36 @@ const ClaimID = () => {
         <div className="mt-4 flex flex-col items-center space-y-6 rounded-lg bg-gray-500/20 bg-opacity-30 px-4 py-12 dark:bg-[#4F4F4F33] lg:mt-24 lg:w-2/5 lg:px-20">
           <div className="text-4xl font-bold lg:text-6xl">CLAIM YOUR ID</div>
           <div className="text-2xl font-semibold text-wid-purple lg:text-3xl">
-            {wagpayID ? wagpayID : <span>satyam@wagpay</span>}
+            {wagpayID ? wagpayID : 'Please choose an ID'}
           </div>
           <span className="text-sm dark:text-gray-300 lg:text-base">
             Check to see if you’re eligible to claim your handle to use <br />{' '}
             across all the apps powered by wagpay
           </span>
-          <button className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 font-medium text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              aria-hidden="true"
-              role="img"
-              width="32"
-              height="32"
-              className="-ml-1 mr-2"
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill="currentColor"
-                d="M2 3.5A1.5 1.5 0 0 1 3.5 2H11a2 2 0 0 1 2 2v.268A2 2 0 0 1 14 6v6a2 2 0 0 1-2 2H4.5A2.5 2.5 0 0 1 2 11.5v-8Zm1 0a.5.5 0 0 0 .5.5H12a1 1 0 0 0-1-1H3.5a.5.5 0 0 0-.5.5ZM10.5 8a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z"
-              ></path>
-            </svg>
-            {address ? address : 'Connect Wallet'}
-          </button>
+
+          {address ? (
+            <button className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 font-medium text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                width="32"
+                height="32"
+                className="-ml-1 mr-2"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="currentColor"
+                  d="M2 3.5A1.5 1.5 0 0 1 3.5 2H11a2 2 0 0 1 2 2v.268A2 2 0 0 1 14 6v6a2 2 0 0 1-2 2H4.5A2.5 2.5 0 0 1 2 11.5v-8Zm1 0a.5.5 0 0 0 .5.5H12a1 1 0 0 0-1-1H3.5a.5.5 0 0 0-.5.5ZM10.5 8a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1Z"
+                ></path>
+              </svg>
+              {address}
+            </button>
+          ) : (
+            <CustomWalletConnect classes="w-full" />
+          )}
           <button className="inline-flex w-full items-center justify-center rounded-full border border-wid-indigo px-6 py-2 font-medium text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
