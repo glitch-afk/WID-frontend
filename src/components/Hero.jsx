@@ -3,8 +3,7 @@ import WIDButton from '@/components/WidButton'
 import { useIDContext } from '@/context/IDContext'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
-
-import ConnectWallet from './ConnectWallet'
+import Image from 'next/image'
 
 const Hero = () => {
   const { wagpayID, setWagpayID } = useIDContext()
@@ -68,7 +67,14 @@ const Hero = () => {
       </div>
       {/* iphone */}
       <div className="mt-16 flex w-full items-center justify-center">
-        <img src="/assets/iphone.svg" alt="iphone_image" />
+        <Image
+          src="/assets/iphone.svg"
+          alt="iphone_image"
+          width={500}
+          height={500}
+          priority
+        />
+        {/* <img src="/assets/iphone.svg" alt="iphone_image" /> */}
       </div>
     </>
   )
