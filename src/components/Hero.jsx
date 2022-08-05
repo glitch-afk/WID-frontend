@@ -5,23 +5,49 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { find_wagpay_id } from '@/utils/db'
+import { useEffect, useRef } from 'react'
 
 const Hero = () => {
   const { wagpayID, setWagpayID } = useIDContext()
+  const ref = useRef()
   const router = useRouter()
   const validID = new RegExp('^[a-zA-Z0-9]+@wagpay$')
   // const specialChar = new RegExp("^/[`~!#$%^&*()_|+-=?;:'\",.<>{}[]\\/]/gi");
 
   const onSubmit = async (e) => {
+    e.preventDefault()
     var toastId = toast.loading('Checking...', {
       style: {
         background: 'linear-gradient(to right, #4B74FF, #9281FF)',
         color: 'white',
       },
     })
-    e.preventDefault()
+
+    if (wagpayID === '@wagpay') {
+      toast.error("Invalid ID - ID can't be empty", {
+        id: toastId,
+        duration: 3000,
+        style: {
+          background: 'linear-gradient(to right, #4B74FF, #9281FF)',
+          color: 'white',
+        },
+      })
+      return
+    }
+
+    if (wagpayID.split('@')[0].length <= 3) {
+      toast.error('Invalid ID - ID should be greater than 3 chars', {
+        id: toastId,
+        duration: 3000,
+        style: {
+          background: 'linear-gradient(to right, #4B74FF, #9281FF)',
+          color: 'white',
+        },
+      })
+      return
+    }
+
     const found = await find_wagpay_id(wagpayID)
-    console.log(found, 'found')
     if (!validID.test(wagpayID) || found) {
       toast.error('Invalid ID', {
         id: toastId,
@@ -44,6 +70,11 @@ const Hero = () => {
     }
   }
 
+  useEffect(() => {
+    ref.current.setSelectionRange(0, 0)
+    ref.current.focus()
+  }, [])
+
   return (
     <>
       <div className="mt-12 flex w-full flex-col items-center space-y-6 text-center dark:text-white sm:mt-32">
@@ -57,16 +88,19 @@ const Hero = () => {
         </div>
         {/* claim id section */}
         <form className="mx-auto w-5/6 sm:w-4/6 lg:w-5/12" onSubmit={onSubmit}>
-          <div className="relative mt-1 flex items-center">
+          <div className="relative flex h-14 w-full items-center justify-center rounded-md border-none pl-4 pr-12 opacity-75 outline-none dark:bg-[#4F4F4F66] sm:text-sm">
             <input
+              ref={ref}
               autoFocus
               type="text"
               name="search"
               id="search"
-              value={wagpayID}
+              value={
+                wagpayID.includes('@wagpay') ? wagpayID : wagpayID + '@wagpay'
+              }
               onChange={(e) => setWagpayID(e.target.value)}
-              placeholder="username"
-              className="block h-14 w-full rounded-md border-none pl-4 pr-12 opacity-75 outline-none dark:bg-[#4F4F4F66] sm:text-sm"
+              placeholder="sbf@wagpay"
+              className="w-full bg-transparent outline-none"
             />
             <div className="absolute inset-y-0 right-0 flex py-2 pr-1.5">
               <WIDButton />
