@@ -7,12 +7,14 @@ import { getAuth, signInWithPopup, TwitterAuthProvider } from 'firebase/auth'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { db } from '@/utils/db'
+import { useRouter } from 'next/router'
 
 const ClaimID = () => {
   const { wagpayID } = useIDContext()
   const [twitterUser, setTwitterUser] = useState(null)
   const [email, setEmail] = useState('')
   const { address } = useAccount()
+  const router = useRouter()
 
   const claimID = async () => {
     await db(email, address, twitterID, wagpayID)
@@ -34,7 +36,13 @@ const ClaimID = () => {
   return (
     <Layout>
       <div className="flex h-fit w-full items-center justify-center text-center dark:text-white">
-        <div className="mt-4 flex flex-col items-center space-y-6 rounded-lg bg-gray-500/20 bg-opacity-30 px-4 py-12 dark:bg-[#4F4F4F33] lg:mt-24 lg:w-2/5 lg:px-20">
+        <div className="relative mt-4 flex flex-col items-center space-y-6 rounded-lg bg-gray-500/20 bg-opacity-30 px-4 py-12 dark:bg-[#4F4F4F33] lg:mt-24 lg:w-2/5 lg:px-20">
+          <div
+            className="absolute right-5 top-5 cursor-pointer"
+            onClick={() => router.push('/')}
+          >
+            &larr; go back
+          </div>
           <div className="text-4xl font-bold lg:text-6xl">CLAIM YOUR ID</div>
           <div className="text-2xl font-semibold text-wid-purple lg:text-3xl">
             {wagpayID ? wagpayID : 'Please choose an ID'}
