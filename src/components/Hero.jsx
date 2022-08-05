@@ -4,6 +4,7 @@ import { useIDContext } from '@/context/IDContext'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { find_wagpay_id } from '@/utils/db'
 
 const Hero = () => {
   const { wagpayID, setWagpayID } = useIDContext()
@@ -11,11 +12,19 @@ const Hero = () => {
   const validID = new RegExp('^[a-zA-Z0-9]+@wagpay$')
   // const specialChar = new RegExp("^/[`~!#$%^&*()_|+-=?;:'\",.<>{}[]\\/]/gi");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+    var toastId = toast.loading('Checking...', {
+      style: {
+        background: 'linear-gradient(to right, #4B74FF, #9281FF)',
+        color: 'white',
+      },
+    })
     e.preventDefault()
-    if (!validID.test(wagpayID)) {
+    const found = await find_wagpay_id(wagpayID)
+    console.log(found, 'found')
+    if (!validID.test(wagpayID) || found) {
       toast.error('Invalid ID', {
-        id: 'Invalid ID',
+        id: toastId,
         duration: 3000,
         style: {
           background: 'linear-gradient(to right, #4B74FF, #9281FF)',
@@ -24,7 +33,7 @@ const Hero = () => {
       })
     } else {
       toast.success('Valid ID', {
-        id: 'success',
+        id: toastId,
         duration: 3000,
         style: {
           background: 'linear-gradient(to right, #4B74FF, #9281FF)',
