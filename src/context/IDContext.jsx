@@ -3,7 +3,7 @@ import { useContext, createContext, useState } from 'react'
 const IDContext = createContext()
 
 export function IDWrapper({ children }) {
-  const [wagpayID, setWagpayID] = useState('')
+  const [wagpayID, setWagpayID] = useState('@wagpay')
 
   return (
     <IDContext.Provider value={{ wagpayID, setWagpayID }}>

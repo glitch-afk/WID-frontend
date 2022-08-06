@@ -35,11 +35,13 @@ const Header = () => {
       <div className="mx-auto flex w-full max-w-8xl items-center">
         <div className="relative flex  flex-grow basis-0 items-center">
           <Link href="/">
-            <a className="block w-fit overflow-hidden lg:w-auto">
+            <a className="flex w-fit items-center justify-center overflow-hidden lg:w-auto">
               <span className="sr-only">Home page</span>
-              <span className="text-2xl font-extrabold dark:text-white">
-                Wagpay
-              </span>
+              <img
+                src="https://pbs.twimg.com/profile_images/1527306707780911104/PsSJMQWg_400x400.jpg"
+                alt="WagPay Logo"
+                className="h-20 w-20 rounded-full"
+              />
             </a>
           </Link>
         </div>
