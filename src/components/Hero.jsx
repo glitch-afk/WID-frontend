@@ -77,10 +77,10 @@ const Hero = () => {
 
   return (
     <>
-      <div className="mt-12 flex w-full flex-col items-center space-y-6 text-center dark:text-white sm:mt-32">
+      <div className="mt-12 flex w-full flex-col items-center space-y-6 text-center font-bold dark:text-white sm:mt-32">
         <div className="inline-block text-4xl font-bold leading-tight dark:text-white lg:text-5xl">
-          Powering your finances with the Next{' '}
-          <span className="dark:text-white lg:block">Chapter of Internet</span>
+          WagPay ID{' '}
+          <span className="dark:text-white lg:block">Interact with Web3</span>
         </div>
         <div className="ms:px-0 inline-block px-2 text-gray-400 lg:text-lg">
           A payment solution that simplifies payment acceptance for the{' '}

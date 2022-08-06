@@ -58,14 +58,25 @@ export const db = async (email, address, twitter, wagpay_id) => {
 
     const data = await sheet.getRows()
 
-    const find = addresses.find((i) => {
-      i.email === email ||
-        i.address === address ||
-        i.twitter === twitter ||
-        i.wagpay_id === wagpay_id
-    })
+    const find = false
 
-    if (find) reject('data already exists')
+    for (let i = 0; i < data.length; i++) {
+      const d = data[i]
+
+      if (
+        d.address === address ||
+        d.twitter === twitter ||
+        d.wagpay_id === wagpay_id
+      ) {
+        find = true
+        break
+      }
+    }
+
+    if (find) {
+      reject('data already exists')
+      return
+    }
 
     const moreRows = await sheet.addRows([
       {

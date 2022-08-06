@@ -17,19 +17,41 @@ const ClaimID = () => {
   const router = useRouter()
 
   const claimID = async () => {
-    await db(email, address, twitterID, wagpayID)
+    const toastId = toast.loading('Checking if you have tweeted')
+    console.log(email, address, twitterUser.reloadUserInfo.screenName, wagpayID)
+    setTimeout(() => {
+      db(email, address, twitterUser.reloadUserInfo.screenName, wagpayID)
+        .then((res) => {
+          toast.success('Successfully added you to whitelist', {
+            id: toastId,
+          })
+        })
+        .catch((e) => {
+          toast.error("Can't add you to whitelist", {
+            id: toastId,
+          })
+        })
+    }, 10000)
   }
 
   const connectTwitter = async () => {
+    const toastId = toast.loading('Connecting Twitter')
+
     const auth = getAuth()
     const provider = new TwitterAuthProvider()
 
     signInWithPopup(auth, provider)
       .then((res) => {
         setTwitterUser(res.user)
+        toast.success('Successfully connected to twitter', {
+          id: toastId,
+        })
       })
       .catch((e) => {
         console.log(e)
+        toast.error("Can't connect to twitter", {
+          id: toastId,
+        })
       })
   }
 
@@ -52,7 +74,7 @@ const ClaimID = () => {
             across all the apps powered by wagpay
           </span>
           {address ? (
-            <button className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 font-medium text-white">
+            <button className="inline-flex w-full items-center justify-center rounded-full border border-wid-indigo px-6 py-2 font-medium text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -103,6 +125,7 @@ const ClaimID = () => {
           {twitterUser && (
             <a
               href={`https://twitter.com/intent/tweet?text=%400xWagPay%20ID%20is%20some%20next%20level%20shit%20happening%20in%20cross%20chain%20world!%20%400xWagPay%20ID%20is%20a%20cross%20chain%20payment%20ID%20system%2C%20I%20have%20claimed%20myself%20${wagpayID}%2C%20go%20and%20claim%20your%20%400xWagPay%20ID%20too...%20Verifying%20my%20identity%20-%3E%20cca8c9bb37de0592f30b1076c8ea6f34&url=https%3A%2F%2Fclaim.wagpay.xyz`}
+              target="_blank"
               className="inline-flex w-full items-center justify-center rounded-full border border-wid-indigo px-6 py-2 font-medium text-white"
             >
               <svg
@@ -126,7 +149,7 @@ const ClaimID = () => {
           )}
           <button
             onClick={() => claimID()}
-            className="inline-flex w-full items-center justify-center rounded-full border border-wid-indigo px-6 py-2 font-medium text-white"
+            className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-wid-indigo to-wid-purple px-6 py-2 font-medium text-white"
           >
             Claim
           </button>
